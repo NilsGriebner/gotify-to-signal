@@ -38,5 +38,5 @@ func TestSetDefaultsForMissingValues(t *testing.T) {
 	require.Equal(t, "<your phone number here>", config.Signal.FromNumber)
 	require.Equal(t, "http://localhost:8089", config.Signal.APIHost)
 	require.Equal(t, "<your client token here>", config.Gotify.ClientToken)
-	require.Equal(t, "http://localhost:8080", config.Gotify.Host)
+	require.Equal(t, "ws://localhost:8080", config.Gotify.Host)
 }
