@@ -5,7 +5,6 @@ on:
       - main
       - master
   pull_request:
-  
 jobs:
   golangci:
     name: lint
@@ -55,8 +54,7 @@ jobs:
     needs:
       - build
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v6
+      - uses: actions/checkout@v6
       - uses: actions/download-artifact@v4
         with:
           path: build
