@@ -71,16 +71,11 @@ jobs:
         with:
           token: ${{ github.token }}
           tag: ${{ github.ref_name }}
-      - id: create_release
-        uses: comnoco/create-release@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+      - name: Create release
+        uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          body:  ${{ steps.changelog.outputs.changes }}
-          draft: false
-          prerelease: false
+          body: ${{ steps.changelog.outputs.changes }}
+          files: build/*.so
       - name: Commit CHANGELOG.md
         uses: stefanzweifel/git-auto-commit-action@v7
         with:
