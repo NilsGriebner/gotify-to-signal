@@ -5,7 +5,6 @@ on:
       - main
       - master
   pull_request:
-  
 jobs:
   golangci:
     name: lint
@@ -28,5 +27,62 @@ jobs:
         with:
           go-version: stable
       - run: go test ./...
+  build:
+    name: build
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        gotify-version: [v2.7.3, v2.8.0]
+    if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
+    steps:
+      - uses: actions/checkout@v6
+      - uses: docker/setup-buildx-action@v3
+      - env:
+          GOTIFY_VERSION: "${{ matrix.gotify-version }}"
+        run: |
+          make download-tools
+          make build
+          - name: Upload build artifacts
+      - uses: actions/upload-artifact@v6
+        with:
+          name: build-${{ matrix.gotify-version }}
+          path: build/*.so
+  release:
+    name: release
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
+    needs:
+      - build
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/download-artifact@v4
+        with:
+          path: build
+          pattern: build-*
+          merge-multiple: true 
+      - name: Update CHANGELOG
+        id: changelog
+        uses: requarks/changelog-action@v1
+        with:
+          token: ${{ github.token }}
+          tag: ${{ github.ref_name }}
+      - id: create_release
+        uses: comnoco/create-release@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          body:  ${{ steps.changelog.outputs.changes }}
+          draft: false
+          prerelease: false
+      - name: Commit CHANGELOG.md
+        uses: stefanzweifel/git-auto-commit-action@v7
+        with:
+          branch: main
+          commit_message: 'docs: update CHANGELOG.md for ${{ github.ref_name }}'
+          file_pattern: CHANGELOG.md
+
+    
   
       
