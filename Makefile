@@ -27,7 +27,7 @@ build-linux-amd64: get-gotify-server-go-version update-go-mod
 	${DOCKER_RUN} ${DOCKER_BUILD_IMAGE}:$(GO_VERSION)-linux-amd64 ${DOCKER_GO_BUILD} -o ${BUILDDIR}/${PLUGIN_NAME}-linux-amd64-${GOTIFY_VERSION}${FILE_SUFFIX}.so ${DOCKER_WORKDIR}
 
 build-linux-arm-7: get-gotify-server-go-version update-go-mod
-	${DOCKER_RUN} ${DOCKER_BUILD_IMAGE}:$(GO_VERSION)-linux-arm-7 ${DOCKER_GO_BUILD} -o ${BUILDDIR}/${PLUGIN_NAME}-linux-arm-7-${GOTIFY_VERSION}{FILE_SUFFIX}.so ${DOCKER_WORKDIR}
+	${DOCKER_RUN} ${DOCKER_BUILD_IMAGE}:$(GO_VERSION)-linux-arm-7 ${DOCKER_GO_BUILD} -o ${BUILDDIR}/${PLUGIN_NAME}-linux-arm-7-${GOTIFY_VERSION}${FILE_SUFFIX}.so ${DOCKER_WORKDIR}
 
 build-linux-arm64: get-gotify-server-go-version update-go-mod
 	${DOCKER_RUN} ${DOCKER_BUILD_IMAGE}:$(GO_VERSION)-linux-arm64 ${DOCKER_GO_BUILD} -o ${BUILDDIR}/${PLUGIN_NAME}-linux-arm64-${GOTIFY_VERSION}${FILE_SUFFIX}.so ${DOCKER_WORKDIR}
