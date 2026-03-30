@@ -76,12 +76,14 @@ func (w WebSocketListener) createConnection(ctx context.Context, url string) (*w
 	w.logger.InfoContext(ctx, "opening websocket connection", "url", url)
 	for {
 		conn, resp, err := websocket.DefaultDialer.DialContext(ctx, url, nil)
-		e := resp.Body.Close()
-		if e != nil {
-			w.logger.ErrorContext(ctx, "unable to close response body", "error", e)
-		}
+		if err != nil {
+			w.logger.ErrorContext(ctx, "unable to open websocket connection", "error", err)
+		} else {
+			err = resp.Body.Close()
+			if err != nil {
+				w.logger.ErrorContext(ctx, "unable to close response body", "error", err)
+			}
 
-		if err == nil {
 			return conn, nil
 		}
 
