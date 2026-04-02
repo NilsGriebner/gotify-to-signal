@@ -3,7 +3,6 @@ module github.com/NilsGriebner/gotify-to-signal
 go 1.24.0
 
 require (
-	github.com/bytedance/gopkg v0.1.3
 	github.com/caarlos0/env/v11 v11.3.1
 	github.com/gorilla/websocket v1.5.3
 	github.com/gotify/plugin-api v1.0.0
@@ -12,6 +11,7 @@ require (
 )
 
 require (
+	github.com/bytedance/gopkg v0.1.3 // indirect
 	github.com/bytedance/sonic v1.14.1 // indirect
 	github.com/bytedance/sonic/loader v0.3.0 // indirect
 	github.com/cloudwego/base64x v0.1.6 // indirect
