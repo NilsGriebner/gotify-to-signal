@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.0.5] - 2026-09-22
+### :sparkles: New Features
+- [`315e6c4`](https://github.com/NilsGriebner/gotify-to-signal/commit/315e6c4e6b8a32450ac693102b4be4d81e571c32) - add compatibility with Gotify server v3.1.1 *(PR [#8](https://github.com/NilsGriebner/gotify-to-signal/pull/8) by [@NilsGriebner](https://github.com/NilsGriebner))*
+
+
 ## [0.0.4] - 2026-04-02
 ### :bug: Bug Fixes
 - [`256646d`](https://github.com/NilsGriebner/gotify-to-signal/commit/256646de6a78340442944ce06cafe3231a707b12) - make websocket listener more robust *(PR [#7](https://github.com/NilsGriebner/gotify-to-signal/pull/7) by [@NilsGriebner](https://github.com/NilsGriebner))*
@@ -27,3 +32,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [0.0.2]: https://github.com/NilsGriebner/gotify-to-signal/compare/0.0.1...0.0.2
 [0.0.3]: https://github.com/NilsGriebner/gotify-to-signal/compare/0.0.2...0.0.3
 [0.0.4]: https://github.com/NilsGriebner/gotify-to-signal/compare/0.0.3...0.0.4
+[0.0.5]: https://github.com/NilsGriebner/gotify-to-signal/compare/0.0.4...0.0.5
